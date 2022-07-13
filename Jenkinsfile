@@ -22,7 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps{
-                sh 'kubectl create -f /nodeapp/deployment.yml'
+                sh 'ssh server@192.168.0.123 kubectl create -f /nodeapp/deployment.yml'
             }
         }
 }
