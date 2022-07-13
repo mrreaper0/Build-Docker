@@ -4,12 +4,6 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('sayedshalabi')
     }
     stages { 
-        stage('SCM Checkout') {
-            steps{
-            git 'https://github.com/ravdy/nodejs-demo.git'
-            }
-        }
-
         stage('Build docker image') {
             steps {  
                 sh 'docker build -t sayedshalabi/nodeapp:$BUILD_NUMBER .'
@@ -28,7 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps{
-                sh 'kubectl create -f /home/server/Jenkins-Files/nodeapp/deployment.yml'
+                sh 'kubectl create -f /nodeapp/deployment.yml'
             }
         }
 }
